@@ -13,5 +13,8 @@
         "sass-loader": "^14.1.1",
         "vite": "^5.0",
         "vue": "^3.4.21"
+    },
+    "dependencies": {
+        "@inertiajs/vue3": "^1.0.15"
     }
 }
