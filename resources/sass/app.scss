@@ -1,0 +1,164 @@
+@import url(https://fonts.bunny.net/css?family=catamaran:200,300,400,500,600,700,800,900);
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+ol, ul{
+    list-style: none;
+}
+body.dark{
+    --background-color: #232326;
+    --color: #d7d7db;
+    --light-color: #a1a1a9;
+    --key-preview: #4a4a4a;
+    --key-border: #373737;
+    --image-bgc: #bc8aea;
+    --button: #2c2c33;
+    --button-hover: #34343a;
+    --divider: #313136;
+    --svg: #e7e5e5;
+
+    --spotify:#05bc51;
+    --spotify-hover: #05a648;
+
+    --social-bg: #313133;
+    --social-bg-hover: #3b3b3b;
+
+    --repository-card-bg: #19191a;
+    --repository-card-bg-hover: #161617;
+
+    --menu-active: #f1f1f1;
+    --menu: #ddd;
+    --menu-hover: var(--button-hover);
+    --menu-hover-text: #cccbcb;
+}
+
+body{
+    --background-color: #ffffff;
+    --color: #24292e;
+    --light-color: #57606a;
+    --key-preview: #e0e0e0;
+    --key-border: #d1d5da;
+    --button: #f6f6f6;
+    --button-hover: #efefef;
+    --divider: var(--button-hover);
+    --svg: #222222;
+
+    --spotify:#01DA5A;
+    --spotify-hover:#05bc51;
+
+    --social-bg: var(--button-hover);
+    --social-bg-hover: #f3f3f3;
+
+    --repository-card-bg: #e3e3e3;
+    --repository-card-bg-hover: #ececec;
+
+    --menu-active: #000000;
+    --menu: #272727;
+    --menu-hover: var(--button-hover);
+    --menu-hover-text: #3b3939;
+
+    -webkit-font-smoothing: antialiased;
+    font-family: Catamaran, sans-serif;
+    background-color: var(--background-color);
+    color: var(--color);
+}
+
+.wrapper{
+    padding: 0 100px;
+    display: flex;
+    flex-direction: row;
+    gap:6vw;
+    margin-bottom: 3rem;
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper{
+        padding: 0 10px;
+    }
+}

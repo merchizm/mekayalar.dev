@@ -11,6 +11,7 @@
         "jwilsson/spotify-web-api-php": "^6.0",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
+        "laravel/ui": "^4.5",
         "softinklab/laravel-keyvalue-storage": "^1.8"
     },
     "require-dev": {
