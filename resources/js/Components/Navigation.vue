@@ -514,7 +514,7 @@ header {
         justify-content: center;
         align-items: center;
         margin-bottom: 5px;
-
+        border-radius: 10px;
         svg {
             width: 200px;
             fill: var(--color);
@@ -522,8 +522,10 @@ header {
 
         &:hover {
             background-color: var(--menu-hover);
-            border-radius: 10px;
+            border-radius: 20px;
         }
+
+        transition: all ease-in 300ms;
     }
 
     .name {
@@ -568,12 +570,12 @@ header {
             align-items: center;
             justify-content: center;
             position: absolute;
-            right: -0.4vw;
-            top: 0.475vw;
+            right: 0.4vw;
+            top: 0.6vw;
             place-content: center;
             border-radius: 0.25rem;
-            width: 1rem;
-            height: 1rem;
+            width: 1.3rem;
+            height: 1.3rem;
             border: 1px solid var(--key-border);
             font-size: 0.8rem;
             line-height: 1rem;
@@ -589,6 +591,7 @@ header {
 
     ul {
         width: 100%;
+        padding: 0;
         li{
             width: 100%;
             display: flex;
@@ -596,6 +599,7 @@ header {
             justify-content: space-between;
             align-items: center;
             border-radius: 0.5rem;
+            transition: all ease-in 300ms;
 
             span{
                 font-size: 1.2rem;
@@ -619,7 +623,7 @@ header {
                 line-height: 1rem;
                 font-weight: 500;
                 color: var(--color);
-                background-color: var(--key-preview);
+                background-color: var(--background-color);
                 transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
                 transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
                 transition-duration: 200ms;

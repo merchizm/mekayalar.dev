@@ -54,6 +54,7 @@ const themeStatusSvgs = {
             border: none;
             background-color: var(--button);
             color: var(--color);
+            transition: background-color ease-in 300ms;
             &:hover{
                 background-color: var(--button-hover);
             }
