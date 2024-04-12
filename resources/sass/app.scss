@@ -1,5 +1,4 @@
-@import url(https://fonts.bunny.net/css?family=catamaran:200,300,400,500,600,700,800,900);
-
+@import url(https://fonts.bunny.net/css?family=akshar:300,400,500,700|catamaran:200,300,400,500,600,700,800,900);
 
 *, :after, :before {
     box-sizing: border-box;
@@ -36,16 +35,16 @@ ol, ul{
     list-style: none;
 }
 body.dark{
-    --background-color: #232326;
+    --background-color: #0C0C0C;
     --color: #d7d7db;
     --light-color: #a1a1a9;
     --key-preview: #4a4a4a;
     --key-border: #373737;
     --image-bgc: #bc8aea;
-    --button: #2c2c33;
-    --button-hover: #34343a;
+    --button: #1a1a1e;
+    --button-hover: #111113;
     --label-border: #414149;
-    --divider: #313136;
+    --divider: #19191c;
     --svg: #e7e5e5;
 
     --spotify:#05bc51;
@@ -94,18 +93,4 @@ body{
     background-color: var(--background-color);
     color: var(--color);
     line-height: inherit;
-}
-
-.wrapper{
-    padding: 0 100px;
-    display: flex;
-    flex-direction: row;
-    gap:6vw;
-    margin-bottom: 3rem;
-}
-
-@media screen and (max-width: 900px) {
-    .wrapper{
-        padding: 0 10px;
-    }
 }

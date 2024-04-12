@@ -401,7 +401,7 @@ l-47 20 -3 123 -3 123 -52 -3z"/>
             </svg>
         </div>
         <div class="name">
-            <span>
+            <span data-name="Meriç&nbsp;Enes&nbsp;Kayalar">
                 Meriç Enes Kayalar
             </span>
             <p>
@@ -544,6 +544,7 @@ header {
             color: var(--color);
             font-size: 2rem;
             display: block;
+            font-weight: 600;
         }
     }
 
@@ -600,6 +601,7 @@ header {
             align-items: center;
             border-radius: 0.5rem;
             transition: all ease-in 300ms;
+            cursor:pointer;
 
             span{
                 font-size: 1.2rem;
