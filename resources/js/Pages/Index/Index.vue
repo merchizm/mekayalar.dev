@@ -26,11 +26,13 @@
             firmalarında Full-stack Geliştirici olarak görev yapıyorum.
         </p>
         <div class="gallery">
-            <img src="https://mekayalar.dev/assets/images/pp.jpeg" alt="">
-            <img src="https://mekayalar.dev/assets/images/pp.jpeg" alt="">
-            <img src="https://mekayalar.dev/assets/images/pp.jpeg" alt="">
-            <img src="https://mekayalar.dev/assets/images/pp.jpeg" alt="">
-            <img src="https://mekayalar.dev/assets/images/pp.jpeg" alt="">
+            <img src="me/me_1.JPG" alt="Ben">
+            <img src="me/me_2.JPG" alt="Yine ben">
+            <img src="me/me_3.JPG" alt="Evet, ben">
+            <img src="me/me_4.JPG" alt="Buyrun, ben">
+            <img src="me/me_5.JPG" alt="Ihım ben">
+            <img src="me/me_6.JPG" alt="Diğer ben">
+            <img src="me/me_7.JPG" alt="Bir diğer ben">
         </div>
         <div class="more_about_me">
             <p>
@@ -108,7 +110,8 @@
                         <button @click="selectTab(2)" :class="{active: activeTab === 2}">Kullandığım Araçlar</button>
                     </div>
                     <div class="st_content">
-                        <div class="content" v-show="activeTab === 0">
+                        <transition name="fade" mode="out-in">
+                            <div class="content" key="1" v-if="activeTab === 0">
                             <div class=tech-card><img :src="isDark ? BashLightSvg : BashDarkSvg" alt="Bash">
                                 <div>Bash <span>{{ new Date().getFullYear() - 2014 }} yıllık deneyim</span></div>
                             </div>
@@ -210,7 +213,9 @@
                                 <div>Flask <span>{{ new Date().getFullYear() - 2019 }} yıllık deneyim</span></div>
                             </div>
                         </div>
-                        <div class="content" v-show="activeTab === 1">
+                        </transition>
+                        <transition name="fade" mode="out-in">
+                        <div class="content" key="2" v-if="activeTab === 1">
                             <div class="tech-card">
                                 <img :src="isDark ? ExpressJSLightSvg : ExpressJSDarkSvg" alt="Express.js">
                                 <div>Express.js <span>{{ new Date().getFullYear() - 2020 }} yıllık deneyim</span></div>
@@ -235,7 +240,9 @@
                                 <div>TailwindCSS <span>{{ new Date().getFullYear() - 2021 }} yıllık deneyim</span></div>
                             </div>
                         </div>
-                        <div class="content" v-show="activeTab === 2">
+                        </transition>
+                        <transition name="fade" mode="out-in">
+                        <div class="content" key="3" v-if="activeTab === 2">
                             <div class="tech-card">
                                 <img :src="isDark ? DebianLightSvg : DebianDarkSvg" alt="Debian">
                                 <div>Debian <span>{{ new Date().getFullYear() - 2015 }} yıllık deneyim</span></div>
@@ -259,6 +266,7 @@
                                 <div>PyCharm <span>{{ new Date().getFullYear() - 2018 }} yıllık deneyim</span></div>
                             </div>
                         </div>
+                        </transition>
                     </div>
                 </div>
             </div>
@@ -295,6 +303,12 @@
     }
 }
 
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s;
+}
+.fade-enter-from, .fade-leave-to {
+    opacity: 0;
+}
 
 .about_me {
     line-height: 1.75;
@@ -370,6 +384,8 @@
             border-radius: 1em;
             height: 11vw;
             transition: transform .2s;
+            outline: 1px solid hsla(0, 0%, 100%, .18);
+            outline-offset: -1px;
 
             &:hover {
                 transform: scale(1.1);
