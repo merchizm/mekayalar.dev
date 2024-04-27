@@ -460,7 +460,14 @@
                         cursor: pointer;
 
                         &:hover {
+                            background-color: var(--button);
+                        }
+
+                        &.active{
                             background-color: var(--button-hover);
+                            &:hover{
+                                background-color: var(--button);
+                            }
                         }
                     }
                 }

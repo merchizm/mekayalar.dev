@@ -1,4 +1,4 @@
-@import url(https://fonts.bunny.net/css?family=akshar:300,400,500,700|catamaran:200,300,400,500,600,700,800,900);
+@import url(https://fonts.bunny.net/css?family=akshar:300,400,500,700|catamaran:200,300,400,500,600,700,800,900|family=adamina:400);
 
 *, :after, :before {
     box-sizing: border-box;
@@ -38,6 +38,7 @@ body.dark{
     --background-color: #0C0C0C;
     --color: #d7d7db;
     --light-color: #a1a1a9;
+    --dark-color: #8c8c91;
     --key-preview: #4a4a4a;
     --key-border: #373737;
     --image-bgc: #bc8aea;
@@ -46,6 +47,11 @@ body.dark{
     --label-border: #414149;
     --divider: #19191c;
     --svg: #e7e5e5;
+
+    --outline-color: hsla(0, 0%, 14%, 0.35);
+    --hover-anchor:#1a1a1e;
+    --poem-container: #070707;
+    --selection: var(--poem-container);
 
     --spotify:#05bc51;
     --spotify-hover: #05a648;
@@ -74,6 +80,11 @@ body{
     --divider: var(--button-hover);
     --svg: #222222;
 
+    --outline-color: hsla(0, 0%, 70%, .18);
+    --hover-anchor:#222222;
+    --poem-container: #f3f3f3;
+    --selection: var(--button-hover);
+
     --spotify:#01DA5A;
     --spotify-hover:#05bc51;
 
@@ -93,4 +104,14 @@ body{
     background-color: var(--background-color);
     color: var(--color);
     line-height: inherit;
+}
+
+::-moz-selection { /* Code for Firefox */
+    color: var(--color);
+    background: var(--selection);
+}
+
+::selection {
+    color: var(--color);
+    background: var(--selection);
 }

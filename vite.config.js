@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 import svgLoader from 'vite-svg-loader'
+import MasonryWall from '@yeger/vue-masonry-wall'
 
 export default defineConfig({
     plugins: [
@@ -31,4 +32,9 @@ export default defineConfig({
             vue: 'vue/dist/vue.esm-bundler.js',
         },
     },
+    optimizeDeps: {
+        include: [
+            '@yeger/vue-masonry-wall'
+        ]
+    }
 });

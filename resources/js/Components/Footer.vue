@@ -1,8 +1,8 @@
 <script setup>
 import {ref} from "vue";
 
-let tatar_hovered = ref(true);
-let turk_hovered = ref(true);
+let tatar_hovered = ref(false);
+let turk_hovered = ref(false);
 </script>
 
 <template>

@@ -437,7 +437,7 @@ l-47 20 -3 123 -3 123 -52 -3z"/>
                 </Link>
             </li>
             <li>
-                <Link href="/blog" class="link">
+                <Link href="/posts" class="link">
                         <span>
                    <svg viewBox="0 0 24 24" fill="none" width="25" height="25" xmlns="http://www.w3.org/2000/svg"><g
                        id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round"
@@ -448,14 +448,14 @@ l-47 20 -3 123 -3 123 -52 -3z"/>
                        d="M2 9C2 5.22876 2 3.34315 3.17157 2.17157C4.34315 1 6.22876 1 10 1H14C17.7712 1 19.6569 1 20.8284 2.17157C22 3.34315 22 5.22876 22 9V13C22 16.7712 22 18.6569 20.8284 19.8284C19.6569 21 17.7712 21 14 21H10C6.22876 21 4.34315 21 3.17157 19.8284C2 18.6569 2 16.7712 2 13V9Z"
                        stroke="#1C274D" stroke-width="1.5"></path> </g></svg>
                     <span>
-                        Blog
+                        Gönderilerim
                     </span>
                 </span>
                     <div>tab</div>
                 </Link>
             </li>
             <li>
-                <div class="link">
+                <Link href="/poems" class="link">
                     <span>
                     <svg viewBox="0 0 24 24" fill="none" width="25" height="25" xmlns="http://www.w3.org/2000/svg"><g
                         id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round"
@@ -474,7 +474,7 @@ l-47 20 -3 123 -3 123 -52 -3z"/>
                     </span>
                 </span>
                     <div>shift</div>
-                </div>
+                </Link>
             </li>
             <li>
                 <div class="link">

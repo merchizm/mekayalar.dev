@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "importSvgs":  "chmod +x generate_imports.sh && ./generate_imports.sh resources/js/icons/",
+        "importSvgs": "chmod +x generate_imports.sh && ./generate_imports.sh resources/js/icons/",
         "htmlColored": "chmod +x create_html_colored.sh && ./create_html_colored.sh",
         "htmlSolids": "chmod +x create_html_solids.sh && ./create_html_solids.sh"
     },
@@ -19,7 +19,8 @@
         "sass-loader": "^14.1.1",
         "vite": "^5.0",
         "vite-svg-loader": "^5.1.0",
-        "vue": "^3.2.37"
+        "vue": "^3.2.37",
+        "@yeger/vue-masonry-wall": "^5.0.10"
     },
     "dependencies": {
         "@inertiajs/vue3": "^1.0.15",
