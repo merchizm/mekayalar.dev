@@ -54,6 +54,7 @@
                 font-family: 'Adamina', serif;
                 font-size: 1.2em;
                 user-select: none;
+                font-style: italic;
             }
         }
     }
