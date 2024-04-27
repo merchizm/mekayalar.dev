@@ -1,19 +1,45 @@
 <script setup>
+    import {ref} from "vue";
     defineProps(['poems']);
-    import MasonryWall from '@yeger/vue-masonry-wall'
+
+
+    const expandedIndex = ref(-1);
+
+    function expandPoem(index) {
+        expandedIndex.value = expandedIndex.value === index ? -1 : index;
+    }
+</script>
+
+<script>
+    function diffForHumans(date){
+        const formatter = new Intl.RelativeTimeFormat('tr', {
+            numeric: 'auto',
+            style: 'long',
+            localeMatcher: 'best fit'
+        });
+        return formatter.format(Math.round((Date.parse(date) - new Date()) / 86400000), 'day');
+    }
+
+    function dateToString(date){
+        return new Date(Date.parse(date)).toLocaleDateString("tr", {
+            weekday: "short",
+            year: "numeric",
+            month: "2-digit",
+            day: "numeric"
+        })
+    }
 </script>
 
 <template>
     <h1>Şiirlerim</h1>
     <p>Şiirleri sadece duygularımı ifade etmek için kullandığım bir gerçek, bu nedenle şairlere nazaran bir performans benden katiyen beklenmemeli ve öyle şiirleri okumalı.</p>
-    <MasonryWall :items="poems" :ssr-columns="2" :column-width="500" :gap="16" class="container">
-        <template #default="{ item, index }">
-            <div class="poem">
-                <h3 class="poem_head">{{ item.title }}</h3>
-                <pre class="poem_context">{{ item.content }}</pre>
-            </div>
-        </template>
-    </MasonryWall>
+    <div class="container">
+        <div v-for="(poem, index) in poems" :key="index" class="poem" @click="expandPoem(index)" :class="{ expanded: expandedIndex === index }">
+            <h3 class="poem_head">{{ poem.title }}</h3>
+            <span v-if="expandedIndex === index" class="poem_details">{{ diffForHumans(poem.wrote_at) }} — {{ dateToString(poem.wrote_at) }}</span>
+            <pre class="poem_context" v-if="expandedIndex === index">{{ poem.content }}</pre>
+        </div>
+    </div>
 </template>
 
 <style scoped lang="scss">
@@ -29,13 +55,17 @@
     .container{
         margin-top: 2em;
         display:flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
         padding: 10px 15px;
         background-color: var(--poem-container);
         border-radius: 10px;
         color: var(--color);
+        position: relative;
         .poem{
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -45,6 +75,18 @@
             margin: 10px;
             user-select: none;
 
+            &.expanded {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 10;
+                border: none;
+                overflow: auto; /* Allows scrolling within the expanded post */
+                padding: 20px; /* more padding for expanded view */
+                transition: all 0.5s ease; /* Slightly slower transition for expansion */
+            }
             .poem_head{
                 font-size: 1.4em;
                 margin-bottom: .8em;
@@ -55,6 +97,12 @@
                 font-size: 1.2em;
                 user-select: none;
                 font-style: italic;
+            }
+
+            .poem_details{
+                font-size: 1em;
+                margin-bottom: 1em;
+                color: var(--light-color);
             }
         }
     }
