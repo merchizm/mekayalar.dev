@@ -44,6 +44,7 @@ body.dark{
     --image-bgc: #bc8aea;
     --button: #1a1a1e;
     --button-hover: #111113;
+    --label-color: var(--button-hover);
     --label-border: #414149;
     --divider: #19191c;
     --svg: #e7e5e5;
@@ -76,6 +77,7 @@ body{
     --key-border: #d1d5da;
     --button: #f6f6f6;
     --button-hover: #efefef;
+    --label-color: var(--background-color);
     --label-border: #3b3b42;
     --divider: var(--button-hover);
     --svg: #222222;

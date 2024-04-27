@@ -351,7 +351,7 @@
             justify-content: center;
             border-radius: 0.4em;
             border: var(--label-border) 1px solid;
-            background-color: var(--button-hover);
+            background-color: var(--label-color);
             padding: 4px 6px;
 
             span {
@@ -384,7 +384,7 @@
             border-radius: 1em;
             height: 11vw;
             transition: transform .2s;
-            outline: 1px solid hsla(0, 0%, 100%, .18);
+            outline: 1px solid var(--outline-color);
             outline-offset: -1px;
 
             &:hover {
