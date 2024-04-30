@@ -123,4 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'clap_version' => env('clap_version', '0.1'),
+
+
 ];

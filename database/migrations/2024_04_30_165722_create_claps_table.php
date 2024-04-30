@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('type');
             $table->unsignedBigInteger('clappable_id');
-            $table->unique(['clappable_type', 'clappable_id']);
+            $table->unique(['type', 'clappable_id']);
+            $table->bigInteger('count')->default(0);
             $table->timestamps();
         });
     }

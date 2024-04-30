@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Clap extends Model
 {
-    protected $fillable = ['url', 'count'];
+    protected $fillable = ['type', 'clappable_id', 'count'];
 }

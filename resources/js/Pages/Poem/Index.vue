@@ -34,10 +34,15 @@
     <h1>Şiirlerim</h1>
     <p>Şiirleri sadece duygularımı ifade etmek için kullandığım bir gerçek, bu nedenle şairlere nazaran bir performans benden katiyen beklenmemeli ve öyle şiirleri okumalı.</p>
     <div class="container">
-        <div v-for="(poem, index) in poems" :key="index" class="poem" @click="expandPoem(index)" :class="{ expanded: expandedIndex === index }">
-            <h3 class="poem_head">{{ poem.title }}</h3>
+        <div v-for="(poem, index) in poems" :key="index" class="poem" :class="{ expanded: expandedIndex === index }">
+            <div class="head">
+                <h3 class="poem_head" @click="expandPoem(index)">{{ poem.title }}</h3>
+                <applause-button :id="poem.id" type="poem" multiclap="true" color="#fff"/>
+            </div>
             <span v-if="expandedIndex === index" class="poem_details">{{ diffForHumans(poem.wrote_at) }} — {{ dateToString(poem.wrote_at) }}</span>
             <pre class="poem_context" v-if="expandedIndex === index">{{ poem.content }}</pre>
+
+
         </div>
     </div>
 </template>
@@ -63,7 +68,6 @@
         color: var(--color);
         position: relative;
         .poem{
-            cursor: pointer;
             overflow: hidden;
             transition: all 0.3s ease;
             display: flex;
@@ -87,10 +91,16 @@
                 padding: 20px; /* more padding for expanded view */
                 transition: all 0.5s ease; /* Slightly slower transition for expansion */
             }
-            .poem_head{
-                font-size: 1.4em;
-                margin-bottom: .8em;
-                user-select: none;
+            .head{
+                display:flex;
+                justify-content: space-between;
+
+                .poem_head{
+                    cursor: pointer;
+                    font-size: 1.4em;
+                    margin-bottom: .8em;
+                    user-select: none;
+                }
             }
             .poem_context{
                 font-family: 'Adamina', serif;

@@ -1,4 +1,5 @@
 @import url(https://fonts.bunny.net/css?family=akshar:300,400,500,700|catamaran:200,300,400,500,600,700,800,900|family=adamina:400);
+@import "applause-button";
 
 *, :after, :before {
     box-sizing: border-box;
@@ -116,4 +117,10 @@ body{
 ::selection {
     color: var(--color);
     background: var(--selection);
+}
+
+applause-button {
+    width: 58px;
+    height: 58px;
+    margin-top: 20px;
 }

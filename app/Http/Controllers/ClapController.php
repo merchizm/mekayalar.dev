@@ -2,28 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClapRequest;
 use App\Models\Clap;
 use Illuminate\Http\Request;
 
 class ClapController extends Controller
 {
-    public function getClaps(Request $request)
+    public function getClaps(ClapRequest $request)
     {
-        $clappable_type = $request->input('type');
-        $clappable_id = $request->input('id');
+        $data = $request->validated();
 
-        $clap = Clap::firstOrCreate([
-            'clappable_type' => $clappable_type,
-            'clappable_id' => $clappable_id
-        ], ['count' => 0]);
+        $data['clappable_id'] = (int)$data['id'];
+        unset($data['id']);
+
+        $clap = Clap::firstOrCreate($data, $data + ['count' => 0]);
 
         return response()->json($clap->count);
     }
 
-    public function updateClaps(Request $request)
+    public function updateClaps(ClapRequest $request)
     {
-        $clappable_type = $request->input('type');
-        $clappable_id = $request->input('id');
+        $data = $request->validated();
+
+        $data['clappable_id'] = $data['id'];
+        unset($data['id']);
         $json = json_decode($request->getContent(), true);
 
         if(config('app.clap_version') !== $json['version'])
@@ -32,10 +34,7 @@ class ClapController extends Controller
         if($json === null || $json === false)
             return response()->json(['message' => 'invalid json'], 500);
 
-        $clap = Clap::where([
-            'clappable_type' => $clappable_type,
-            'clappable_id' => $clappable_id
-        ])->firstOrFail();
+        $clap = Clap::where($data)->firstOrFail();
 
         $clap->increment('count', $json['clapsCount']);
 
