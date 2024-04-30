@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClapRequest;
 use App\Models\Clap;
+use App\Models\ClapLog;
 use Illuminate\Http\Request;
 
 class ClapController extends Controller
 {
+    const MAX_CLAPS_PER_USER = 10;
+
     public function getClaps(ClapRequest $request)
     {
         $data = $request->validated();
@@ -23,6 +26,7 @@ class ClapController extends Controller
     public function updateClaps(ClapRequest $request)
     {
         $data = $request->validated();
+        $ip_address = $request->ip();
 
         $data['clappable_id'] = $data['id'];
         unset($data['id']);
@@ -35,6 +39,21 @@ class ClapController extends Controller
             return response()->json(['message' => 'invalid json'], 500);
 
         $clap = Clap::where($data)->firstOrFail();
+
+        // Check how many times this IP has clapped
+        $count = ClapLog::where('clap_id', $clap->id)
+            ->where('ip_address', $ip_address)
+            ->count();
+
+        if ($count >= self::MAX_CLAPS_PER_USER)
+            return response($clap->count);
+
+        // Log the clap
+        ClapLog::create([
+            'clap_id' => $clap->id,
+            'ip_address' => $ip_address
+        ]);
+
 
         $clap->increment('count', $json['clapsCount']);
 
