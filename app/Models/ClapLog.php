@@ -11,6 +11,7 @@ class ClapLog extends Model
 
     protected $fillable = [
         'clap_id',
-        'ip_address'
+        'ip_address',
+        'count'
     ];
 }

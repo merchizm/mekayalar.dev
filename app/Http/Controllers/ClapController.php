@@ -41,19 +41,12 @@ class ClapController extends Controller
         $clap = Clap::where($data)->firstOrFail();
 
         // Check how many times this IP has clapped
-        $count = ClapLog::where('clap_id', $clap->id)
-            ->where('ip_address', $ip_address)
-            ->count();
+        $log = ClapLog::firstOrCreate(['clap_id' => $clap->id, 'ip_address' => $ip_address], ['clap_id' => $clap->id, 'ip_address' => $ip_address, "count" => 0]);
 
-        if ($count >= self::MAX_CLAPS_PER_USER)
+        if ($log->count >= self::MAX_CLAPS_PER_USER)
             return response($clap->count);
 
-        // Log the clap
-        ClapLog::create([
-            'clap_id' => $clap->id,
-            'ip_address' => $ip_address
-        ]);
-
+        $log->increment('count', $json['clapsCount']);
 
         $clap->increment('count', $json['clapsCount']);
 
