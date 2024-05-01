@@ -5,7 +5,9 @@ namespace App\Services;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Http;
 use SoftinkLab\LaravelKeyvalueStorage\Facades\KVOption;
 
 class RaindropService
@@ -80,7 +82,7 @@ class RaindropService
     }
 
 
-    function refreshToken($clientId, $clientSecret, $refreshToken): array
+    function refreshToken($refreshToken): array
     {
         $client = new Client();
         $url = 'https://raindrop.io/oauth/access_token';
@@ -91,14 +93,17 @@ class RaindropService
                     'Content-Type' => 'application/json',
                 ],
                 'json' => [
-                    'client_id' => $clientId,
-                    'client_secret' => $clientSecret,
+                    'client_id' => config('external.raindrop_client_id'),
+                    'client_secret' => config('external.raindrop_client_secret'),
                     'grant_type' => 'refresh_token',
                     'refresh_token' => $refreshToken,
                 ],
             ]);
 
             $body = json_decode($response->getBody(), true);
+
+            KVOption::set('raindrop_access_token', $body['access_token']);
+            KVOption::set('raindrop_refresh_token', $body['refresh_token']);
 
             // Handle the response as needed, for example, return or store the new tokens
             return [
@@ -112,6 +117,57 @@ class RaindropService
             return [
                 'error' => true,
                 'message' => $e->getMessage(),
+            ];
+        }
+    }
+
+    public function authorize(): string
+    {
+        return "https://raindrop.io/oauth/authorize?client_id=".config('external.raindrop_client_id')."&redirect_uri=".config('external.raindrop_callback_url');
+    }
+
+    public function callback(Request $request)
+    {
+        if($request->has('code'))
+        {
+            $client = new Client();
+            $response = $client->post('https://raindrop.io/oauth/access_token', [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'code' => $request->query('code'),
+                    'client_id' => config('external.raindrop_client_id'),
+                    'redirect_uri' => config('external.raindrop_callback_url'),
+                    'client_secret' => config('external.raindrop_client_secret'),
+                    'grant_type' => 'authorization_code'
+                ]
+            ]);
+
+            $body = json_decode($response->getBody(), true);
+
+            if($response->getStatusCode() === 200)
+            {
+                KVOption::set('raindrop_access_token', $body['access_token']);
+                KVOption::set('raindrop_refresh_token', $body['refresh_token']);
+
+                return [
+                    'access_token' => $body['access_token'],
+                    'refresh_token' => $body['refresh_token'],
+                    'expires_in' => $body['expires_in'], // You can calculate the exact expiry time by adding this value to the current time
+                    'token_type' => $body['token_type'],
+                ];
+            }else{
+                return [
+                    'error' => 'true',
+                    'message' => 'params invalid',
+                    'response' => $body
+                ];
+            }
+        }else{
+            return [
+                'error' => 'true',
+                'message' => 'params invalid'
             ];
         }
     }

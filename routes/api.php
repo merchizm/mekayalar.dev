@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClapController;
+use App\Http\Controllers\RaindropController;
 use App\Http\Controllers\SpotifyController;
 use Illuminate\Support\Facades\Route;
 use SoftinkLab\LaravelKeyvalueStorage\Facades\KVOption;
@@ -26,4 +27,15 @@ Route::group(['as' => 'spotify.', 'prefix' => 'spotify'], function () {
     Route::get('test', function(){
        return KVOption::get('spotify_access_token');
     });
+});
+
+
+/**
+ * Raindrop End-points
+ */
+
+Route::group(['as' => 'raindrop.', 'prefix' => 'raindrop'], function(){
+
+    Route::get('authorize', [RaindropController::class, 'authToRain']);
+    Route::get('callback', [RaindropController::class, 'callback']);
 });
