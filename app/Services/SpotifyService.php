@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use Illuminate\Http\Request;
 use SoftinkLab\LaravelKeyvalueStorage\Facades\KVOption;
 use SpotifyWebAPI;
 use SpotifyWebAPI\SpotifyWebAPIAuthException;
 use SpotifyWebAPI\SpotifyWebAPIException;
+use function Symfony\Component\String\s;
 
 
 class SpotifyService
@@ -36,48 +38,25 @@ class SpotifyService
 
         // initialize spotify API
         $this->session = new SpotifyWebAPI\Session(
-            KVOption::get('SPOTIFY_CLIENT_ID'),
-            KVOption::get('SPOTIFY_CLIENT_SECRET'),
-            KVOption::get('CALLBACK_URL')
+            config('external.spotify_client_id'),
+            config('external.spotify_client_secret'),
+            config('external.spotify_callback_url')
         );
 
 
         $this->options = [
             'scope' => [
                 'user-read-currently-playing',
+                'playlist-read-private'
             ],
         ];
 
-        $this->api = new SpotifyWebAPI\SpotifyWebAPI($this->session);
+        $this->api = new SpotifyWebAPI\SpotifyWebAPI(session:$this->session);
     }
 
-    public function auth(): void
+    public function auth(): string
     {
-        $this->session->getAuthorizeUrl($this->options);
-    }
-
-    /**
-     * json result
-     * @return false|string
-     */
-    public function json(): false|string
-    {
-        try {
-            // check result is valid
-            $result = json_decode($this->currentPlaying(), true);
-
-            $last_response = $this->api->getLastResponse();
-            if($result['is_playing'] === false || $last_response['status'] ==! 200 || $last_response['status'] ==! 204){ // @see https://developer.spotify.com/documentation/web-api/
-                $this->refreshToken();
-                return $this->currentPlaying();
-            }else
-                return json_encode($result);
-        } catch (SpotifyWebAPIAuthException $ex) {
-            return json_encode(['error' => 'The access token could not be refreshed.', 'is_playing' => false]);
-        } catch (SpotifyWebAPIException $ex) { // if access token is expired, renew with refresh token and try again
-            $this->refreshToken();
-            return $this->currentPlaying();
-        }
+        return $this->session->getAuthorizeUrl($this->options);
     }
 
     /**
@@ -93,18 +72,74 @@ class SpotifyService
 
     /**
      * get current playing song
-     * @return false|string
+     * @return array
      */
-    private function currentPlaying(): false|string
+    public function currentPlaying(): array
     {
-        $this->api->setAccessToken(KVOption::get('spotify_access_token'));
-        $result = (array)$this->api->getMyCurrentTrack();
-        if(empty($result))
-            return json_encode(['is_playing' => false]);
-        $artists = [];
-        foreach ($result['item']->artists as $artist) {
-            $artists[] = $artist->name;
+        $cp = function(){
+            $this->setAccessToken();
+            $result = (array)$this->api->getMyCurrentTrack();
+            if(empty($result))
+                return ['is_playing' => false];
+            $artists = [];
+            foreach ($result['item']->artists as $artist) {
+                $artists[] = $artist->name;
+            }
+            return ["name" => $result['item']->name, "artists" => implode(', ', $artists), "is_playing" => $result["is_playing"], "url" => $result['item']->external_urls->spotify];
+        };
+        try {
+            // check result is valid
+            $result = $cp();
+
+            $last_response = $this->api->getLastResponse();
+            if($result['is_playing'] === false || $last_response['status'] ==! 200 || $last_response['status'] ==! 204){ // @see https://developer.spotify.com/documentation/web-api/
+                $this->refreshToken();
+                return $result;
+            }else
+                return $result;
+        } catch (SpotifyWebAPIAuthException $ex) {
+            return ['error' => 'The access token could not be refreshed.', 'is_playing' => false];
+        } catch (SpotifyWebAPIException $ex) { // if access token is expired, renew with refresh token and try again
+            $this->refreshToken();
+            return $cp();
         }
-        return json_encode(["name" => $result['item']->name, "artists" => implode(', ', $artists), "is_playing" => $result["is_playing"], "url" => $result['item']->external_urls->spotify]);
+    }
+
+    public function setAccessToken()
+    {
+        $this->session->setAccessToken(KVOption::get('spotify_access_token'));
+        $this->api->setAccessToken(KVOption::get('spotify_access_token'));
+    }
+
+    /**
+     * get all user playlists
+     */
+    public function userPlaylists($offset = 0) : array
+    {
+        $this->setAccessToken();
+        $result = (array) $this->api->getMyPlaylists([
+            'limit' => 50,
+            'offset' => $offset
+        ]);
+
+        $last_response = $this->api->getLastResponse();
+        if($last_response['status'] === 200)
+        {
+            return $result;
+        }else{
+            return [
+                'message' => 'açıkcası bende problem ne bilmiyorum :('
+            ];
+        }
+    }
+
+    public function callback(Request $request){
+        if($request->has('code'))
+        {
+            $this->session->requestAccessToken($_GET['code']);
+            $this->api->setAccessToken($this->session->getAccessToken());
+            KVOption::set('spotify_access_token', $this->session->getAccessToken());
+            KVOption::set('spotify_refresh_token', $this->session->getRefreshToken());
+        }
     }
 }
