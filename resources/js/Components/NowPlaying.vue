@@ -54,84 +54,85 @@ import {onMounted, ref} from "vue";
 
 <style scoped lang="scss">
     .spotify_current {
-    svg {
-        fill: var(--spotify);
-        stroke: var(--spotify-hover);
-    }
+        svg {
+            fill: var(--spotify);
+            stroke: var(--spotify-hover);
+        }
+        align-items:center;
 
-    margin-top: 2rem;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    padding: 8px 10px;
-    background-color: var(--button);
-    border-radius: 5px;
+        margin-top: 2rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        padding: 8px 10px;
+        background-color: var(--button);
+        border-radius: 5px;
 
-    &.loading{
-        justify-content: center;
-        .loader {
-            width: 100%;
-            height: 3px;
-            position: relative;
-            overflow: hidden;
-            background-color: var(--background-color);
-            margin: auto;
-            -webkit-border-radius: 20px;
-            -moz-border-radius: 20px;
-            border-radius: 20px;
-
-            &:before {
-                content: "";
-                position: absolute;
-                left: -50%;
+        &.loading{
+            justify-content: center;
+            .loader {
+                width: 100%;
                 height: 3px;
-                width: 40%;
-                background-color: var(--color);
-                -webkit-animation: lineAnim 1s linear infinite;
-                -moz-animation: lineAnim 1s linear infinite;
-                animation: lineAnim 1s linear infinite;
+                position: relative;
+                overflow: hidden;
+                background-color: var(--background-color);
+                margin: auto;
                 -webkit-border-radius: 20px;
                 -moz-border-radius: 20px;
                 border-radius: 20px;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    left: -50%;
+                    height: 3px;
+                    width: 40%;
+                    background-color: var(--color);
+                    -webkit-animation: lineAnim 1s linear infinite;
+                    -moz-animation: lineAnim 1s linear infinite;
+                    animation: lineAnim 1s linear infinite;
+                    -webkit-border-radius: 20px;
+                    -moz-border-radius: 20px;
+                    border-radius: 20px;
+                }
+            }
+
+            @keyframes lineAnim {
+                0% {
+                    left: -40%;
+                }
+                50% {
+                    left: 20%;
+                    width: 80%;
+                }
+                100% {
+                    left: 100%;
+                    width: 100%;
+                }
             }
         }
 
-        @keyframes lineAnim {
-            0% {
-                left: -40%;
-            }
-            50% {
-                left: 20%;
-                width: 80%;
-            }
-            100% {
-                left: 100%;
-                width: 100%;
+        .now_playing {
+            display: flex;
+            flex-direction: column;
+            font-size: 16px;
+
+            div {
+                font-size: 12px;
             }
         }
-    }
 
-    .now_playing {
-        display: flex;
-        flex-direction: column;
-        font-size: 16px;
+        &:hover {
+            background-color: var(--button-hover);
 
-        div {
-            font-size: 12px;
+            svg {
+                fill: var(--spotify-hover);
+            }
         }
-    }
 
-    &:hover {
-        background-color: var(--button-hover);
-
-        svg {
-            fill: var(--spotify-hover);
+        &:active {
+            filter: brightness(1.3);
         }
-    }
-
-    &:active {
-        filter: brightness(1.3);
-    }
 }
 </style>
