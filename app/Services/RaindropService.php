@@ -148,6 +148,7 @@ class RaindropService
 
             if($response->getStatusCode() === 200)
             {
+                KVOption::set('raindrop_dead_time', Carbon::now()->timestamp + (int) $body['expires_in']);
                 KVOption::set('raindrop_access_token', $body['access_token']);
                 KVOption::set('raindrop_refresh_token', $body['refresh_token']);
 

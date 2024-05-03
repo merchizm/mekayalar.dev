@@ -215,7 +215,7 @@
                         </div>
                         </transition>
                         <transition name="fade" mode="out-in">
-                        <div class="content" key="2" v-if="activeTab === 1">
+                            <div class="content" key="2" v-if="activeTab === 1">
                             <div class="tech-card">
                                 <img :src="isDark ? ExpressJSLightSvg : ExpressJSDarkSvg" alt="Express.js">
                                 <div>Express.js <span>{{ new Date().getFullYear() - 2020 }} yıllık deneyim</span></div>
@@ -242,7 +242,7 @@
                         </div>
                         </transition>
                         <transition name="fade" mode="out-in">
-                        <div class="content" key="3" v-if="activeTab === 2">
+                            <div class="content" key="3" v-if="activeTab === 2">
                             <div class="tech-card">
                                 <img :src="isDark ? DebianLightSvg : DebianDarkSvg" alt="Debian">
                                 <div>Debian <span>{{ new Date().getFullYear() - 2015 }} yıllık deneyim</span></div>

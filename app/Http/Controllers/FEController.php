@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Poem;
+use App\Services\RaindropService;
 use Illuminate\Http\Request;
 
 class FEController extends Controller
 {
+    private RaindropService $bookmarkService;
+
+    public function __construct()
+    {
+        $this->bookmarkService = new RaindropService();
+    }
+
     public function index()
     {
         return inertia('Index/Index');
@@ -26,6 +34,8 @@ class FEController extends Controller
 
     public function bookmarks()
     {
-        return inertia('Bookmarks/Index', []);
+        return inertia('Bookmarks/Index', [
+            'bookmarks' => $this->bookmarkService->getBookmarksGroupByDay()
+        ]);
     }
 }
