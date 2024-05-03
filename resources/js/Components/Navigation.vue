@@ -495,7 +495,7 @@ l-47 20 -3 123 -3 123 -52 -3z"/>
                 </div>
             </li>
             <li>
-                <div class="link">
+                <Link href="/bookmarks" class="link">
                      <span>
                    <svg viewBox="0 0 24 24" fill="none" width="25" height="25" xmlns="http://www.w3.org/2000/svg"><g
                        id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round"
@@ -509,7 +509,7 @@ l-47 20 -3 123 -3 123 -52 -3z"/>
                     </span>
                 </span>
                     <div>⌘</div>
-                </div>
+                </Link>
             </li>
         </ul>
         <div class="spotify_current">

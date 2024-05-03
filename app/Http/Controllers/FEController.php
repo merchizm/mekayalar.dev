@@ -23,4 +23,9 @@ class FEController extends Controller
             'poems' => Poem::orderBy('wrote_at', 'desc')->get()
         ]);
     }
+
+    public function bookmarks()
+    {
+        return inertia('Bookmarks/Index', []);
+    }
 }
