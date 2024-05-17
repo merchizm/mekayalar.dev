@@ -31,6 +31,7 @@ defineProps(['bookmarks']);
         color: var(--color);
         filter: brightness(70%);
         font-weight: normal;
+        margin-bottom: .60em;
     }
     margin-top: 1em;
     margin-bottom: 1em;

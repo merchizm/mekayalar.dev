@@ -8,7 +8,6 @@ import {onMounted, ref} from "vue";
         try {
             const response = await fetch('http://127.0.0.1:8000/api/spotify/playing');
             const data = await response.json();
-            console.log(data);
             if(data.is_playing == true){
                 musicName.value = `${data.name} - ${data.artists}`;
                 loading.value = true;
@@ -24,6 +23,7 @@ import {onMounted, ref} from "vue";
 
     onMounted(() => {
         fetchData();
+        setInterval(fetchData, 1000 * ( 60 * 2 ));
     })
 </script>
 

@@ -1,7 +1,11 @@
 <script setup>
     import {ref} from "vue";
+    import {useDark} from "@vueuse/core";
     defineProps(['poems']);
 
+    const isDark = useDark({
+        selector: "body"
+    });
 
     const expandedIndex = ref(-1);
 
@@ -37,7 +41,7 @@
         <div v-for="(poem, index) in poems" :key="index" class="poem" :class="{ expanded: expandedIndex === index }">
             <div class="head">
                 <h3 class="poem_head" @click="expandPoem(index)">{{ poem.title }}</h3>
-                <applause-button :id="poem.id" type="poem" multiclap="true" color="#fff"/>
+                <applause-button :id="poem.id" type="poem" multiclap="true" :color="isDark ? '#fff' : '#222222'"/>
             </div>
             <span v-if="expandedIndex === index" class="poem_details">{{ diffForHumans(poem.wrote_at) }} — {{ dateToString(poem.wrote_at) }}</span>
             <pre class="poem_context" v-if="expandedIndex === index">{{ poem.content }}</pre>

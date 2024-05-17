@@ -23,7 +23,7 @@
             ve <a class="label" href="https://itemsatis.com" target="_blank"><span><img src="itemsatis.png"
                                                                                         alt="İtemSatış Logo"
                                                                                         title="İtemSatış Logo"></span>İtemSatış</a>
-            firmalarında Full-stack Geliştirici olarak görev yapıyorum.
+            firmalarında Full-stack Geliştirici olarak çalışıyorum.
         </p>
         <div class="gallery">
             <img src="me/me_1.JPG" alt="Ben">
@@ -100,7 +100,7 @@
             </div>
             <div class="about_software">
                 <p>
-                    Öte yandan yazılımdaki durumum için aşağıdaki kısmı inceleyebilirsiniz, eğer ki okuduğum kitapları,
+                    Öte yandan yazılımdaki durumum için aşağıdaki kısmı inceleyebilirsiniz. Eğer ki okuduğum kitapları veya
                     dinlediğim müzikleri merak ediyorsanız, kitaplığa uğrayabilirisiniz.
                 </p>
                 <div class="software_tabs">

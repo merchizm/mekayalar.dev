@@ -44,7 +44,8 @@
             <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate eos, ex, fugit impedit iste iure laborum libero, magnam quibusdam sit tenetur unde voluptate voluptatibus. At fugit optio quibusdam veniam vero.</span><span>At delectus eaque id laudantium magnam quaerat repellendus vitae. Aut consectetur error nesciunt optio repellendus similique vitae voluptatem. Consectetur dolor error esse illo maiores officia quam quidem saepe sit veritatis.</span><span>A accusantium dolore dolores eaque eos eveniet facere iure, molestiae pariatur provident quos saepe sequi suscipit tempora vero voluptate voluptatibus voluptatum? Commodi consectetur deleniti itaque maiores numquam praesentium reprehenderit soluta.</span></p>
         </div>
     </div>
-    <div class="pixel_art">
+    <div class="image">
+        <div class="tag">👾</div>
         <picture>
             <source media="(max-width: 799px)" srcset="https://images.pexels.com/photos/1624496/pexels-photo-1624496.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
             <source media="(min-width: 800px)" srcset="https://images.pexels.com/photos/1624496/pexels-photo-1624496.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
@@ -66,7 +67,8 @@
             <img/>
         </picture>
     </div>
-    <div class="photo">
+    <div class="image">
+        <div class="tag">📸</div>
         <picture>
             <source media="(max-width: 799px)" srcset="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
             <source media="(min-width: 800px)" srcset="https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
@@ -104,51 +106,29 @@
             }
         }
     }
-    .pixel_art{
-        background-size: 42.5px 48.959999999999994px;
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 42.5 48.959999999999994" width="42.5" height="48.959999999999994" style="opacity: 0.4; filter: grayscale(0.5);"><text x="0em" y="1em" font-size="34" transform="rotate(32 21.25 20.4)">👾</text></svg>');
+    .image{
+        position: relative;
         display: flex;
         flex-direction: row;
         gap: 2em;
-        background-color: var(--button-hover);
+        background-color: rgba(17, 17, 19, 0.5);
         border-radius: 20px;
         padding: 20px;
         margin-bottom: 1em;
-        border: var(--button) dashed 2px;
+        outline: var(--outline-color) solid 2px;
         justify-content: center;
         transition: all ease-in-out 600ms;
-        &:hover{
-            border: #58298a dashed 2px;
-        }
-        img{
-            width: 200px;
+        .tag{
+            position:absolute;
+            top: 10px;
+            left: 10px;
+            padding: 4px 10px;
+            background-color: var(--button);
+            border: var(--outline-color) solid 2px;
             border-radius: 10px;
-            outline: 1px solid hsla(0, 0%, 100%, .18);
-            transition: outline-color ease 500ms;
-
-            &:hover{
-                outline: 1px solid hsla(0, 0%, 100%, 0.35);
-            }
-        }
-    }
-    .photo{
-        background-size: 85px 81.6px;
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 85 81.6" width="85" height="81.6" style="opacity: 0.4; filter: grayscale(0.5);"><text x="0em" y="1em" font-size="34" transform="rotate(40 21.25 20.4)">📷</text><text x="1.25em" y="2em" font-size="34" transform="rotate(40 63.75 54.4)">📸</text></svg>');
-        display: flex;
-        flex-direction: row;
-        gap: 2em;
-        background-color: var(--button-hover);
-        border-radius: 20px;
-        padding: 20px;
-        margin-bottom: 1em;
-        border: var(--button) dashed 2px;
-        justify-content: center;
-        transition: all ease-in-out 600ms;
-        &:hover{
-            border: #bababa dashed 2px;
         }
         img{
-            max-height: 500px;
+            height:400px;
             border-radius: 10px;
             outline: 1px solid hsla(0, 0%, 100%, .18);
             transition: outline-color ease 500ms;
@@ -168,7 +148,7 @@
         padding: 5px;
         margin-bottom: 1em;
         &:hover{
-            outline: 1px solid var(--outline-color);
+            outline: 2px solid var(--outline-color);
             div .heading svg{
                 fill: var(--hover-anchor);
             }

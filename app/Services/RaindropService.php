@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Carbon\Carbon;
@@ -15,28 +16,37 @@ class RaindropService
 
     /**
      * @throws GuzzleException
+     * @throws Exception
      */
     function getBookmarks($page = 0, $items = []): array
     {
-        $client = new Client();
-        $collectionId = '28611701';
-        $perPage = 50;
-        $created = '2021-01-01';
-        $endPoint = "https://api.raindrop.io/rest/v1/raindrops/{$collectionId}?perpage={$perPage}&page={$page}&search=created:>{$created}&sort=-created";
+       try{
+           $client = new Client();
+           $collectionId = '28611701';
+           $perPage = 50;
+           $created = '2021-01-01';
+           $endPoint = "https://api.raindrop.io/rest/v1/raindrops/{$collectionId}?perpage={$perPage}&page={$page}&search=created:>{$created}&sort=-created";
 
-        $response = $client->request('GET', $endPoint, [
-            'headers' => [
-                'Authorization' => 'Bearer ' . KVOption::get('raindrop_access_token'),
-            ]
-        ]);
+           $response = $client->request('GET', $endPoint, [
+               'headers' => [
+                   'Authorization' => 'Bearer ' . KVOption::get('raindrop_access_token'),
+               ]
+           ]);
 
-        $data = json_decode($response->getBody()->getContents(), true);
+           $data = json_decode($response->getBody()->getContents(), true);
 
-        if ($data['count'] === $perPage) {
-            return $this->getBookmarks($page + 1, array_merge($items, $data['items']));
-        } else {
-            return array_merge($items, $data['items']);
-        }
+           if ($data['count'] === $perPage) {
+               return $this->getBookmarks($page + 1, array_merge($items, $data['items']));
+           } else {
+               return array_merge($items, $data['items']);
+           }
+       }catch(GuzzleException){
+           $res = $this->refreshToken();
+           if(isset($res['error']))
+               throw new Exception($res['message']);
+           else
+               return $this->getBookmarks($page, $items);
+       }
     }
 
     function shorten_data($data) : Collection
@@ -82,7 +92,7 @@ class RaindropService
     }
 
 
-    function refreshToken($refreshToken): array
+    function refreshToken(): array
     {
         $client = new Client();
         $url = 'https://raindrop.io/oauth/access_token';
@@ -96,7 +106,7 @@ class RaindropService
                     'client_id' => config('external.raindrop_client_id'),
                     'client_secret' => config('external.raindrop_client_secret'),
                     'grant_type' => 'refresh_token',
-                    'refresh_token' => $refreshToken,
+                    'refresh_token' =>  KVOption::get('raindrop_refresh_token'),
                 ],
             ]);
 
@@ -104,6 +114,7 @@ class RaindropService
 
             KVOption::set('raindrop_access_token', $body['access_token']);
             KVOption::set('raindrop_refresh_token', $body['refresh_token']);
+            KVOption::set('raindrop_dead_time', Carbon::now()->timestamp + (int) $body['expires_in']);
 
             // Handle the response as needed, for example, return or store the new tokens
             return [

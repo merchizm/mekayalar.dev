@@ -16,8 +16,12 @@ defineProps({
 
 <style scoped lang="scss">
 .bookmark-card{
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    &:hover{
+        background-color: var(--button);
+        cursor:pointer;
+    }
     p {
         a {
             color: var(--color);
@@ -28,7 +32,7 @@ defineProps({
             }
             &:visited {
                 color: var(--color);
-                filter: brightness(70%);
+                filter: brightness(50%);
             }
         }
         padding-top: 0.2em;
