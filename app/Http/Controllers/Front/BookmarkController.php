@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
-use App\Models\Poem;
+use App\Http\Controllers\Controller;
 use App\Services\RaindropService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Inertia\Response;
+use Inertia\ResponseFactory;
 
-class FEController extends Controller
+class BookmarkController extends Controller
 {
     private RaindropService $bookmarkService;
 
@@ -16,24 +17,7 @@ class FEController extends Controller
         $this->bookmarkService = new RaindropService();
     }
 
-    public function index()
-    {
-        return inertia('Index/Index');
-    }
-
-    public function blog()
-    {
-        return inertia('Blog/Blog');
-    }
-
-    public function poems()
-    {
-        return inertia('Poem/Index', [
-            'poems' => Poem::orderBy('wrote_at', 'desc')->get()
-        ]);
-    }
-
-    public function bookmarks()
+    public function index(): Response|ResponseFactory
     {
         /**
          * burada şimdilik geçici basit bir cache yapısı oluşturdum.

@@ -11,6 +11,7 @@
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
         "@vitejs/plugin-vue": "^4.5.0",
+        "@yeger/vue-masonry-wall": "^5.0.10",
         "axios": "^1.6.4",
         "bootstrap": "^5.2.3",
         "laravel-vite-plugin": "^1.0",
@@ -19,11 +20,12 @@
         "sass-loader": "^14.1.1",
         "vite": "^5.0",
         "vite-svg-loader": "^5.1.0",
-        "vue": "^3.2.37",
-        "@yeger/vue-masonry-wall": "^5.0.10"
+        "vue": "^3.2.37"
     },
     "dependencies": {
         "@inertiajs/vue3": "^1.0.15",
-        "@vueuse/core": "^10.9.0"
+        "@kangc/v-md-editor": "^2.3.18",
+        "@vueuse/core": "^10.9.0",
+        "md-editor-v3": "^4.15.0"
     }
 }

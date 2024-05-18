@@ -3,13 +3,21 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
+
+Route::get('/', [App\Http\Controllers\Front\IndexController::class, 'index'])->name('index');
+Route::get('/posts', [App\Http\Controllers\Front\BlogController::class, 'index'])->name('posts');
+Route::get('/poems', [App\Http\Controllers\Front\PoemController::class, 'index'])->name('poems');
+Route::get('/bookmarks', [App\Http\Controllers\Front\BookmarkController::class, 'index'])->name('bookmarks');
+
+/**
+ * Authentication Routes
+ */
+Route::get('auth/login', [App\Http\Controllers\Auth\LoginController::class, 'loginPage'])->name('login');
+Route::post('auth/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
+
+Route::get('auth/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 
-Route::get('/manage', [App\Http\Controllers\ManagerController::class, 'index'])->name('manager');
-
-
-Route::get('/', [App\Http\Controllers\FEController::class, 'index'])->name('index');
-Route::get('/posts', [App\Http\Controllers\FEController::class, 'blog'])->name('posts');
-Route::get('/poems', [App\Http\Controllers\FEController::class, 'poems'])->name('poems');
-Route::get('/bookmarks', [App\Http\Controllers\FEController::class, 'bookmarks'])->name('bookmarks');
+/**
+ * Manager Routes
+ */

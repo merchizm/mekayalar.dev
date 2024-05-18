@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Services\RaindropService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;

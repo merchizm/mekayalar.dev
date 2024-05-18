@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\ClapController;
-use App\Http\Controllers\RaindropController;
-use App\Http\Controllers\SpotifyController;
+use App\Http\Controllers\API\ClapController;
+use App\Http\Controllers\API\RaindropController;
+use App\Http\Controllers\API\SpotifyController;
 use Illuminate\Support\Facades\Route;
 use SoftinkLab\LaravelKeyvalueStorage\Facades\KVOption;
 
