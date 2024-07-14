@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\Front\IndexController::class, 'index'])->name('index');
 Route::get('/posts', [App\Http\Controllers\Front\BlogController::class, 'index'])->name('posts');
+
 Route::get('/poems', [App\Http\Controllers\Front\PoemController::class, 'index'])->name('poems');
+Route::get('/poems/{slug}', [App\Http\Controllers\Front\PoemController::class, 'show'])->name('poems.show');
 Route::get('/bookmarks', [App\Http\Controllers\Front\BookmarkController::class, 'index'])->name('bookmarks');
 
 /**

@@ -1,17 +1,12 @@
 <script setup>
     import {ref} from "vue";
     import {useDark} from "@vueuse/core";
+    import {Link} from "@inertiajs/vue3";
     defineProps(['poems']);
 
     const isDark = useDark({
         selector: "body"
     });
-
-    const expandedIndex = ref(-1);
-
-    function expandPoem(index) {
-        expandedIndex.value = expandedIndex.value === index ? -1 : index;
-    }
 </script>
 
 <script>
@@ -39,19 +34,21 @@
     <p>Şiirleri sadece duygularımı ifade etmek için kullandığım bir gerçek, bu nedenle şairlere nazaran bir performans benden katiyen beklenmemeli ve öyle şiirleri okumalı.</p>
     <div class="container">
         <div v-for="(poem, index) in poems" :key="index" class="poem" :class="{ expanded: expandedIndex === index }">
-            <div class="head">
-                <h3 class="poem_head" @click="expandPoem(index)">{{ poem.title }}</h3>
-                <applause-button :id="poem.id" type="poem" multiclap="true" :color="isDark ? '#fff' : '#222222'"/>
-            </div>
-            <span v-if="expandedIndex === index" class="poem_details">{{ diffForHumans(poem.wrote_at) }} — {{ dateToString(poem.wrote_at) }}</span>
-            <pre class="poem_context" v-if="expandedIndex === index">{{ poem.content }}</pre>
-
-
+            <Link :href="'/poems/' + poem.slug" class="link">
+                <div class="head">
+                    <h3 class="poem_head">{{ poem.title }}</h3>
+                    <applause-button :id="poem.id" type="poem" multiclap="true" :color="isDark ? '#fff' : '#222222'"/>
+                </div>
+            </Link>
         </div>
     </div>
 </template>
 
 <style scoped lang="scss">
+    .link{
+        text-decoration: none;
+        color: var(--color);
+    }
     h1{
         font-size: 1.7em;
         font-style: italic;
@@ -83,18 +80,6 @@
             margin: 10px;
             user-select: none;
 
-            &.expanded {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                z-index: 10;
-                border: none;
-                overflow: auto; /* Allows scrolling within the expanded post */
-                padding: 20px; /* more padding for expanded view */
-                transition: all 0.5s ease; /* Slightly slower transition for expansion */
-            }
             .head{
                 display:flex;
                 justify-content: space-between;

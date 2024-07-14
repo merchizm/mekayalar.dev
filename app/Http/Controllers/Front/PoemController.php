@@ -15,4 +15,13 @@ class PoemController extends Controller
             'poems' => Poem::orderBy('wrote_at', 'desc')->get()
         ]);
     }
+
+    public function show(string $slug)
+    {
+        $poem = Poem::where('slug', $slug)->firstOrFail();
+
+        return inertia('Poem/Poem', [
+            'poem' => $poem
+        ]);
+    }
 }
