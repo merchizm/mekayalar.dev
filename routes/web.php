@@ -21,5 +21,12 @@ Route::get('auth/logout', [App\Http\Controllers\Auth\LoginController::class, 'lo
 
 
 /**
- * Manager Routes
+ * Manager/Admin Routes
  */
+Route::prefix('panel')->namespace('admin')->middleware(['auth'])->group(function () {
+    Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
+    // post routes
+    Route::get('posts', [App\Http\Controllers\Admin\PostController::class, 'index'])->name('posts');
+    Route::get('posts/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->name('posts.create');
+});

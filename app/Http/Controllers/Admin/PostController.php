@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -14,7 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return inertia('Admin/Post/Index', [
+            'user' => Auth::user(),
+            'posts' => Post::query()->orderBy('created_at', 'desc')->paginate(10),
+        ]);
     }
 
     /**
@@ -22,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Admin/Post/Create');
     }
 
     /**

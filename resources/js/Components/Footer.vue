@@ -76,7 +76,7 @@ let turk_hovered = ref(false);
         </div>
         <div class="flags">
             <div class="flag">
-                <img src="ataturk-32310.png"
+                <img src="http://127.0.0.1:8000/ataturk-32310.png"
                      alt="Halaskâr Başöğretmenimiz Mareşal Mustafa Kemal Atatürk"
                      :class="{ grayscale: !turk_hovered}"
                      v-on:mouseover="turk_hovered = true"
@@ -86,7 +86,7 @@ let turk_hovered = ref(false);
                 </span>
             </div>
             <div class="flag">
-                <img src="turkiye_coat_of_army_fan_made.png"
+                <img src="http://127.0.0.1:8000/turkiye_coat_of_army_fan_made.png"
                      alt="Türkiye Coat Of Army (Unofficial)"
                      :class="{ grayscale: !turk_hovered}"
                      v-on:mouseover="turk_hovered = true"
@@ -96,7 +96,7 @@ let turk_hovered = ref(false);
                 </span>
             </div>
             <div class="flag">
-                <img src="tatarstan_coat_of_army.png"
+                <img src="http://127.0.0.1:8000/tatarstan_coat_of_army.png"
                      alt="Tatarstan Coat Of Army"
                      :class="{ grayscale: !tatar_hovered }"
                      v-on:mouseover="tatar_hovered = true"

@@ -9,7 +9,7 @@ import "../sass/app.scss";
 createInertiaApp({
     title: title => `${title} - Meriç Enes Kayalar`,
     resolve: (name) => {
-        const pages = import.meta.glob("./Pages/**/*.vue", { eager: true });
+        const pages = import.meta.glob("./Pages/**/**/*.vue", { eager: true });
         let page = pages[`./Pages/${name}.vue`]
         page.default.layout = page.default.layout || MainLayout
         return page;
@@ -18,5 +18,11 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .mount(el);
+    },
+    progress: {
+        delay: 50,
+        color: 'rgba(81,50,227,0.67)',
+        includeCSS: true,
+        showSpinner: false,
     },
 });

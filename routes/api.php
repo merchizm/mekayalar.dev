@@ -35,7 +35,6 @@ Route::group(['as' => 'spotify.', 'prefix' => 'spotify'], function () {
  */
 
 Route::group(['as' => 'raindrop.', 'prefix' => 'raindrop'], function(){
-
     Route::get('authorize', [RaindropController::class, 'authToRain']);
     Route::get('callback', [RaindropController::class, 'callback']);
 });

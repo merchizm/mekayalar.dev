@@ -26,6 +26,12 @@
         "@inertiajs/vue3": "^1.0.15",
         "@kangc/v-md-editor": "^2.3.18",
         "@vueuse/core": "^10.9.0",
-        "md-editor-v3": "^4.15.0"
+        "cropperjs": "^1.6.2",
+        "highlight.js": "^11.10.0",
+        "katex": "^0.16.11",
+        "md-editor-v3": "^4.17.4",
+        "mermaid": "^10.9.1",
+        "prettier": "^3.3.3",
+        "screenfull": "^6.0.2"
     }
 }
