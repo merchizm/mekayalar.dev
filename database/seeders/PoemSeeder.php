@@ -20,6 +20,7 @@ class PoemSeeder extends Seeder
         $data = [
             [
                 'title' => 'Gemi',
+                'slug' => 'gemi',
                 'content' => 'İçim olmuş kıyıya vuran gemi
 İçim-içim kayalıklara dağılmış
 Hislerim, ağır yaralanmış düşlerim
@@ -33,6 +34,7 @@ Hislerim, ağır yaralanmış düşlerim
             ],
             [
                 'title' => 'Son Pişmanlık',
+                'slug' => 'son-pismanlik',
                 'content' => 'Kalbimin cehennem kapısının
 Çanları çaldı bu gece
 Beraat ediyorum kendime attığım iftiralardan
@@ -51,6 +53,7 @@ Dönüp gülümsedi bana sonra bir ses',
             ],
             [
                 'title' => 'Muhtaç',
+                'slug' => 'muhtac',
                 'content' => 'Bir yetimin askıdaki ekmeği
 Istemesi gibi senden sevgi dilenişim.
 Sıcaklığına muhtaç,
@@ -69,6 +72,7 @@ Uzaktan muhtaç bir şekilde',
             ],
             [
                 'title' => 'Mektup',
+                'slug' => 'mektup',
                 'content' => 'Cümlelerimin anlam kazanması için
 Kaç ölüm gerekir bu distopik alemde
 Daha ne kadar tutsağı olmalıyım
@@ -82,6 +86,7 @@ Bu yalvarışın varoluşsal sancısından',
             ],
             [
                 'title' => 'untitled',
+                'slug' => 'untitled',
                 'content' => 'Gözlerinde ki kaybolan denizcilerin
 Hangi okyanusa karşı geldiğini söyle bana
 Söyle ki oracıkta kendimi bırakayım
@@ -99,6 +104,7 @@ Ne demiştim ? Evet, gözlerin..
             ],
             [
                 'title' => 'Kış',
+                'slug' => 'kis',
                 'content' => 'Eldivenlerim gizleyememiş, parmaklarımdaki kokan zehri,
 Sevememişim kışın soğuğunu, yaktığı yanaklarımı,
 Kuşların habersiz tavırlarından göç edişini, hiç sevememişim.
@@ -107,6 +113,7 @@ Kar yağmayan, içimi acıtan ve alnımı terleten kışı hiç sevmemişim.',
             ],
             [
                 'title' => 'Özgürlük',
+                'slug' => 'ozgurluk',
                 'content' => 'Pişman olurum ağlarken sildiğim göz yaşlarımdan.
 Üzülürüm israftan elimi yüzümü silmekten kağıtlara.
 Fakat atacak yol yordam yoktur ağlamak dışında,
@@ -144,6 +151,7 @@ Yas olur içim dışımda beyaza, benden uzak olan beyaza.',
             ],
             [
                 'title' => 'Ayrı An',
+                'slug' => 'ayri-an',
                 'content' => '1:An
 
 Hissiz bir parmağın her hangi tene değmesi,
@@ -160,6 +168,7 @@ Bakışındaki okun zehirinin etkisi.',
             ],
             [
                 'title' => 'Cana Batan Gemi',
+                'slug' => 'cana-batan-gemi',
                 'content' => 'Bilmediğim rotasyona giden, unuttuğum gemi batmış.
 Bunu duyanlar bana hep hayretle ve acıyarak bakmış,
 Bira şişelerinin içindeki gemilerim, o kadarcık suda batmış,
@@ -178,6 +187,7 @@ Kırılmamışım, bulmuşum soluğumu o uzaklara giden gemiyle.',
             ],
             [
                 'title' => 'aşk',
+                'slug' => 'ask',
                 'content' => 'İnsanlar mı?
 
 Aynı insanların başka insanlarla yaşadığı aynı mutluluklar,
@@ -190,6 +200,7 @@ Kırılgan, kedi kendisini sevdirince yeşeren çiçekler.',
             ],
             [
                 'title' => 'Eigengrau',
+                'slug' => 'eigengrau',
                 'content' => 'Aradığım maviliği, her gece daldığım,
 Masanın yan tarafındaki boşlukta buldum.
 Her dalışımda bir kaç insan öldü içimde,
@@ -208,6 +219,7 @@ Hele beyin, işte oradan umutsuzluklar, hatıralar.',
             ],
             [
                 'title' => 'Bakırköy',
+                'slug' => 'bakirkoy',
                 'content' => 'Beni bağışlayın, sizin için delirseydim,
 Fark eder miydiniz, tırnaklarımın kırıldığını ?
 Merak eder miydiniz, ne sebeple kırıldığını ?
@@ -225,6 +237,7 @@ Demek anlamazdınız sizde kuşun kanadından.',
             ],
             [
                 'title' => 'untitled',
+                'slug' => 'untitled-1',
                 'content' => 'İlk günaydını güneşin bizim olduğumuz yere,
 Her şey maviyken kaybetmemiz için derinliğini,
 Süzülmemiz aşağı doğru, orantısız ve uzaklara,
@@ -238,6 +251,7 @@ iki ayrım birleşip tek yok olsa da başlayamamak yola, biz',
             ],
             [
                 'title' => '18. Sone',
+                'slug' => '18-sone',
                 'content' => 'Bir gecenin sessizliği gibi içimde,
 Dudaklarımda sızlayan bir özlem,
 Yıldızların titrek ışığı altında,
@@ -256,6 +270,7 @@ Bir sevda şarkısı, bir ömür boyu sürer.',
             ],
             [
                 'title' => 'Son Pişmanlık Revize',
+                'slug' => 'son-pismanlik-revize',
                 'content' => 'Gecenin sessizliğinde çırpınan kanatlarım,
 Cehennem kapısının çanlarına eşlik ediyor.
 Kendime itiraf ediyorum yorgunluğumu,
@@ -269,6 +284,7 @@ Nefes almadan önce düşünürüm her adımı.
             ],
             [
                 'title' => 'Çok saçma',
+                'slug' => 'cok-sacma',
                 'content' => 'Içimdeki fabrikaların borularından
 Simsiyah ve kirli dumanlar, yükselirken tek yaptığım
 Kömürü artırmak çok saçma
@@ -280,6 +296,7 @@ Sadece an için yaşamak, Geleceği düşünmemek çok saçma',
             ],
             [
                 'title' => 'Kimse',
+                'slug' => 'kimse',
                 'content' => 'Kaşımın üstündeki yara
 Bakıyor aynadan adetta bana
 Kıkırdayıp, gülüyor halime
@@ -288,6 +305,7 @@ Verdiğim sözlere, yaptıklarıma ',
             ],
             [
                 'title' => 'Şifa',
+                'slug' => 'sifa',
                 'content' => 'Zamanında doktorlar bile önerirmiş sigara
 Desene ölüm bile şifaymış
 Acı deryasında yüzen insana',
@@ -295,6 +313,7 @@ Acı deryasında yüzen insana',
             ],
             [
                 'title' => 'Umut',
+                'slug' => 'umut',
                 'content' => 'Ne umutsuzcaydı size karşı o tebessümlerim, bakışlarım
 Kırılgan yaprakları kalbimin, saçtığım aydınlığın temsili
 Oysa düşmekteydim karanlığınıza, kayan bir yıldız gibi
@@ -303,6 +322,7 @@ O sırada hayali deli yakınlığın, siz bir solukta silmişken beni',
             ],
             [
                 'title' => 'Untitled',
+                'slug' => 'untitled-2',
                 'content' => 'Düşüncelerimin arasında kendimi kaybetmişken,
 Noktayı bulmamla küçük bir parka adımımı attım.
 Kırık bankın dibinde çekirdek çöplüğüne el salladım.
@@ -312,12 +332,14 @@ Düşlerim çiğnenmeden yutuldu, ben yine sensiz kaldım. ',
             ],
             [
                 'title' => 'Untitled',
+                'slug' => 'untitled-3',
                 'content' => 'Reflexleşmişti oysaki, her gün o gözlerinin içine dalmak.
 Seninle aynı adımları tutturmak ve bozmamak için uğraşlar',
                 'wrote_at' => Carbon::createFromDate(2023, 9, 1)
             ],
             [
                 'title' => 'Taslak untitled',
+                'slug' => 'taslak-untitled',
                 'content' => 'Aşkın en karmaşık hali içindeyim şimdi,
 Sözlerin siliniyor, yüreğim yanıyor.
 Geriye sadece acı dolu anılar kaldı,
@@ -326,6 +348,7 @@ Onursuzluğun soğuk rüzgarı esiyor etrafımda.',
             ],
             [
                 'title' => 'Tenine düşen yağmur damlalarından korurum seni',
+                'slug' => 'tenine-dusen-yagmur-damlalarindan-korurum-seni',
                 'content' => 'Tenine düşen yağmur damlalarından korurum seni,
 Gizlice süzülen her damla, sevgimle birleşir belki.
 Bir perde gibi örterim seni ıslak öpücüklerle,

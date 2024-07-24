@@ -434,7 +434,6 @@ l-47 20 -3 123 -3 123 -52 -3z"/>
                             Hakkımda
                         </span>
                     </span>
-                    <div>esc</div>
                 </Link>
             </li>
             <li>
@@ -452,7 +451,6 @@ l-47 20 -3 123 -3 123 -52 -3z"/>
                         Gönderilerim
                     </span>
                 </span>
-                    <div>tab</div>
                 </Link>
             </li>
             <li>
@@ -474,7 +472,6 @@ l-47 20 -3 123 -3 123 -52 -3z"/>
                         Şiirlerim
                     </span>
                 </span>
-                    <div>shift</div>
                 </Link>
             </li>
             <li>
@@ -492,7 +489,6 @@ l-47 20 -3 123 -3 123 -52 -3z"/>
                         Kitaplık
                     </span>
                 </span>
-                    <div>ctrl</div>
                 </div>
             </li>
             <li>
@@ -509,7 +505,6 @@ l-47 20 -3 123 -3 123 -52 -3z"/>
                         Yer İmleri
                     </span>
                 </span>
-                    <div>⌘</div>
                 </Link>
             </li>
         </ul>

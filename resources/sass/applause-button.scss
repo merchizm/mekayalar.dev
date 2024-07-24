@@ -8,8 +8,8 @@
   position: absolute;
   width: $size;
   height: $size;
-  margin-left: (100% - $size) / 2;
-  margin-top: (100% - $size) / 2;
+  margin-left: calc((100% - $size) / 2);
+  margin-top: calc((100% - $size) / 2);
 }
 
 @mixin position-fill() {
