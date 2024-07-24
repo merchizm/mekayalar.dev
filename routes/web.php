@@ -29,4 +29,8 @@ Route::prefix('panel')->namespace('admin')->middleware(['auth'])->group(function
     // post routes
     Route::get('posts', [App\Http\Controllers\Admin\PostController::class, 'index'])->name('posts');
     Route::get('posts/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->name('posts.create');
+
+
+    // Category routes
+    Route::get('categories', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories');
 });

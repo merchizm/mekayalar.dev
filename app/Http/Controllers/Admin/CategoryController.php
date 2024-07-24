@@ -7,6 +7,8 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Str;
+use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
@@ -15,7 +17,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return inertia('Admin/Category/Index', [
+            'categories' => Category::all(),
+            'url' => url('')
+        ]);
     }
 
     /**
@@ -24,7 +29,8 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $data = $request->validated();
-
+        $data['slug'] = Str::slug($data['name']);
+        $data['image'] = 'https://via.placeholder.com/150';
         $category = Category::create($data);
 
         return response()->json([
