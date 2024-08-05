@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,14 +22,26 @@ Route::get('auth/logout', [App\Http\Controllers\Auth\LoginController::class, 'lo
 /**
  * Manager/Admin Routes
  */
-Route::prefix('panel')->namespace('admin')->middleware(['auth'])->group(function () {
+Route::prefix('panel')->middleware(['auth'])->group(function () {
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
-    // post routes
+    /**
+     * Post/Blog End-points
+     */
     Route::get('posts', [App\Http\Controllers\Admin\PostController::class, 'index'])->name('posts');
-    Route::get('posts/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->name('posts.create');
+    Route::get('posts-create', [App\Http\Controllers\Admin\PostController::class, 'create'])->name('posts.create');
 
 
-    // Category routes
+    /**
+     * Category End-points
+     */
     Route::get('categories', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories');
+    Route::resource('categories',App\Http\Controllers\Admin\CategoryController::class)->except(['create', 'edit', 'index']);
+    // burayı böyle neden yaptım bilmiyorum ama hoşuma da gitti kaldırmayacağım :D
+
+
+    /**
+     * Poem End-points
+     */
+    Route::resource('poems', App\Http\Controllers\Admin\PoemController::class)->except(['create', 'edit']);
 });

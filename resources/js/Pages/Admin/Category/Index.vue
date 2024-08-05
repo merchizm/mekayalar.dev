@@ -1,8 +1,9 @@
 <template>
     <AdminNavigation/>
-    <div class="container">
+    <div class="link-container">
+        <button class="link" @click="openCreateModal">Yeni Kategori</button>
+    </div>
         <h1>Kategori Yönetimi</h1>
-        <button class="add-btn" @click="openCreateModal">Yeni Kategori</button>
         <ul class="category-list">
             <li v-for="category in categories" :key="category.id" class="category-item">
                 <span>{{ category.name }}</span>
@@ -13,34 +14,42 @@
             </li>
         </ul>
 
+        <!-- Create/Edit Modal -->
         <div v-if="showModal" class="modal-overlay">
             <div class="modal">
-                <h2>{{ editMode ? 'Kategoriyi Düzenle' : 'Yeni Kategori' }}</h2>
-                <input v-model="categoryForm.name" placeholder="Kategori Adı" class="input" />
-                <div class="modal-actions">
-                    <button class="cancel-btn" @click="closeModal">İptal</button>
-                    <button class="save-btn" @click="saveCategory">{{ editMode ? 'Güncelle' : 'Kaydet' }}</button>
-                </div>
+                <h2>{{ editMode ? 'Kategoriyi Düzenle': 'Yeni Kategori' }}</h2>
+                <form @submit.prevent="submitForm">
+                    <input v-model="form.name" placeholder="Kategori Adı" class="input" />
+                    <div v-if="form.errors.name" class="error">{{ form.errors.name }}</div>
+                    <div class="modal-actions">
+                        <button type="button" class="cancel-btn" @click="closeModal">İptal</button>
+                        <button type="submit" class="save-btn" :disabled="form.processing">
+                            {{ editMode ? 'Güncelle' : 'Kaydet' }}
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
 </template>
+
 <script>
-import {usePage, router } from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3';
 import Swal from 'sweetalert2';
 import AdminNavigation from "@/Components/AdminNavigation.vue";
 
 export default {
     components: {AdminNavigation},
+    props: {
+        categories: Array
+    },
     data() {
         return {
-            categories: [],
             showModal: false,
             editMode: false,
-            categoryForm: {
+            form: useForm({
                 id: null,
                 name: ''
-            }
+            })
         };
     },
     methods: {
@@ -50,32 +59,37 @@ export default {
             this.showModal = true;
         },
         openEditModal(category) {
-            this.categoryForm = { ...category };
+            this.form.reset();
+            this.form.id = category.id;
+            this.form.name = category.name;
             this.editMode = true;
             this.showModal = true;
         },
         closeModal() {
             this.showModal = false;
+            this.form.reset();
         },
-        saveCategory() {
+        submitForm() {
             if (this.editMode) {
-                router.put(`/api/category/${this.categoryForm.id}`, this.categoryForm, {
+                this.$inertia.put(`./categories/${this.form.id}`, this.form, {
                     onFinish: () => {
                         this.showModal = false;
+                        this.form.reset();
                     }
                 });
             } else {
-                router.post('/api/category', this.categoryForm, {
+                this.$inertia.post('./categories/', this.form, {
                     onFinish: () => {
                         this.showModal = false;
+                        this.form.reset();
                     }
                 });
             }
         },
         confirmDelete(id) {
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Emin misin?',
+                text: "Kategoriyi silersen bu işlem geri alınamaz!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -88,46 +102,28 @@ export default {
             });
         },
         deleteCategory(id) {
-            router.delete(`/api/category/${id}`, {
+            this.$inertia.delete(`./categories/${id}`, {
                 onFinish: () => {
                     Swal.fire(
                         'Deleted!',
-                        'Your category has been deleted.',
+                        'Kategori Başarıyla silindi.',
                         'success'
                     );
                 }
             });
         },
         resetForm() {
-            this.categoryForm = {
-                id: null,
-                name: ''
-            };
+            this.form.reset();
+            this.form.id = null;
         }
     }
 };
 </script>
 
-<style scoped>
-.container {
-    margin: 0 auto;
-    padding: 20px;
-}
-
+<style scoped lang="scss">
 h1 {
     font-size: 24px;
     margin-bottom: 20px;
-}
-
-.add-btn {
-    display: inline-block;
-    background-color: var(--button);
-    color: var(--color);
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 20px;
-    border-radius: 5px;
 }
 
 .category-list {
@@ -205,5 +201,24 @@ h1 {
 .save-btn {
     background-color: var(--button);
     color: var(--color);
+}
+
+.link-container{
+    justify-content: end;
+    align-items:end;
+    display:flex;
+    .link{
+        display: block;
+        margin: 20px;
+        text-decoration: none;
+        border-radius: 6px;
+        background-color: var(--button-hover);
+        color: var(--color);
+        padding: 0.3em 1em;
+        cursor: pointer;
+        &:hover{
+            background-color: var(--button);
+        }
+    }
 }
 </style>

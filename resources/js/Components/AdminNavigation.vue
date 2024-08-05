@@ -1,17 +1,13 @@
 <script setup>
-
+import {Link} from '@inertiajs/vue3';
 </script>
 
 <template>
     <div class="navigation-container">
-        <a href="posts">Gönderi Yönetimi</a>
-        <a href="categories">Kategori Yönetimi</a>
-        <a href="poems">Şiir Yönetimi</a>
-        <a href="media">Medya Yönetimi</a>
-        <a href="spotify">Spotify Ayarları</a>
-        <a href="github">Github Ayarları</a>
-        <a href="raindrop">Raindrop Ayarları</a>
-        <a href="../auth/logout">Çıkış Yap</a>
+        <Link class="link" href="posts">Gönderi Yönetimi</Link>
+        <Link class="link" href="categories">Kategori Yönetimi</Link>
+        <Link class="link" href="poems">Şiir Yönetimi</Link>
+        <Link class="link" href="/auth/logout">Çıkış Yap</Link>
     </div>
 </template>
 
@@ -21,7 +17,8 @@
         flex-direction:row;
         gap:12px;
         justify-content: space-around;
-        a{
+        .link{
+            flex: 1;
             text-decoration: none;
             display: flex;
             border-radius: 6px;

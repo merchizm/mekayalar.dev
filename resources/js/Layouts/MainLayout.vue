@@ -1,9 +1,13 @@
 <script setup>
-import { Head } from '@inertiajs/vue3'
+import { Head, usePage } from '@inertiajs/vue3'
 import Navigation from "../Components/Navigation.vue";
 import Container from "../Components/Container.vue";
 import ScreenSaver from "../Components/ScreenSaver.vue";
 import Footer from "../Components/Footer.vue";
+import {computed} from "vue";
+
+
+const page = usePage()
 </script>
 
 <template>

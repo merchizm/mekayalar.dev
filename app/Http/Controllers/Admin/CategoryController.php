@@ -8,8 +8,6 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
-use Inertia\Inertia;
-
 class CategoryController extends Controller
 {
     /**
@@ -18,8 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         return inertia('Admin/Category/Index', [
-            'categories' => Category::all(),
-            'url' => url('')
+            'categories' => Category::all()
         ]);
     }
 
@@ -33,11 +30,7 @@ class CategoryController extends Controller
         $data['image'] = 'https://via.placeholder.com/150';
         $category = Category::create($data);
 
-        return response()->json([
-            'category' =>   $category,
-            'message' => 'Category created successfully',
-            'type' => 'success',
-        ]);
+        return redirect()->back()->with('success', 'Category created successfully');
     }
 
     /**
@@ -68,16 +61,9 @@ class CategoryController extends Controller
 
             $category->update($data);
 
-            return response()->json([
-                'category' =>   $category,
-                'message' => 'Category updated successfully',
-                'type' => 'success',
-            ]);
+            return redirect()->back()->with('success', 'Category updated successfully');
         }catch (ModelNotFoundException $exception){
-            return response()->json([
-                'message' => $exception->getMessage(),
-                'type' => 'error'
-            ], 400);
+            return redirect()->back()->with('error', $exception->getMessage());
         }
     }
 
@@ -89,16 +75,10 @@ class CategoryController extends Controller
         try{
             $category->delete();
 
-            return response()->json([
-                'message' => 'Category deleted successfully',
-                'type' => 'success',
-            ]);
+            return redirect()->back()->with('success', 'Category deleted successfully');
 
         }catch (ModelNotFoundException $exception){
-            return response()->json([
-                'message' => $exception->getMessage(),
-                'type' => 'error'
-            ], 400);
+            return redirect()->back()->with('error', $exception->getMessage());
         }
     }
 }

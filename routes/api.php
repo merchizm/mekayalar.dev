@@ -40,10 +40,3 @@ Route::group(['as' => 'raindrop.', 'prefix' => 'raindrop'], function(){
     Route::get('callback', [RaindropController::class, 'callback']);
 });
 
-
-/**
- * Category End-points
- */
-Route::group(['as' => 'category.', 'prefix' => 'category', 'middleware' => 'web'], function(){
-    Route::resource('/',CategoryController::class)->except(['create', 'edit', 'index']);
-});
